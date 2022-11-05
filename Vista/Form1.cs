@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Logica;
 
 namespace Vista
 {
@@ -16,7 +17,6 @@ namespace Vista
         public Form1()
         {
             InitializeComponent();
-            textPass.UseSystemPasswordChar = true;
         }
         #region ControlInterfaz
 
@@ -38,54 +38,23 @@ namespace Vista
 
         private void textUser_Enter(object sender, EventArgs e)
         {
-            if(textUser.Text == "Fulanito Gomez")
-            {
-                textUser.Clear();
-            }
-            textUser.ForeColor = Color.FromArgb (99,99,150);
         }
 
         private void textUser_Leave(object sender, EventArgs e)
         {
-            if (textUser.Text == "")
-            {
-                textUser.Text = "Fulanito Gomez";
-            }
-            textUser.ForeColor = Color.DimGray;
         }
 
         
         private void textPass_Enter(object sender, EventArgs e)
         {
-            if (textPass.Text == "Pancho32;")
-            {
-                textPass.Clear();
-            }
-            textPass.ForeColor = Color.FromArgb(99, 99, 150);
         }
 
         private void textPass_Leave(object sender, EventArgs e)
         {
-            if (textPass.Text == "")
-            {
-                textPass.Text = "Pancho32";
-            }
-            textPass.ForeColor = Color.DimGray;
         }
 
         private void btnShowPass_Click(object sender, EventArgs e)
         {
-            if (textPass.UseSystemPasswordChar == true)
-            {
-                textPass.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                if (textPass.UseSystemPasswordChar == false)
-                {
-                    textPass.UseSystemPasswordChar = true;
-                }
-            }
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -100,5 +69,19 @@ namespace Vista
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
         #endregion
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            SelectorComandos Cmd = new SelectorComandos();
+            Cmd.Consulta(textBox1.Text, textBox2.Text, textBox3.Text);
+
+            foreach (DataRow Fila in Cmd.Resultado.Rows)
+            {
+                foreach (var item in Fila.ItemArray)
+                {
+                    MessageBox.Show(Convert.ToString(item));
+                }
+            }
+        }
     }
 }

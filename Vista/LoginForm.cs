@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Data.SqlClient;
 
 namespace Vista
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
             textPass.UseSystemPasswordChar = true;
@@ -38,7 +39,7 @@ namespace Vista
 
         private void textUser_Enter(object sender, EventArgs e)
         {
-            if(textUser.Text == "Fulanito Gomez")
+            if(textUser.Text == "Usuario")
             {
                 textUser.Clear();
             }
@@ -49,7 +50,7 @@ namespace Vista
         {
             if (textUser.Text == "")
             {
-                textUser.Text = "Fulanito Gomez";
+                textUser.Text = "Usuario";
             }
             textUser.ForeColor = Color.DimGray;
         }
@@ -57,7 +58,7 @@ namespace Vista
         
         private void textPass_Enter(object sender, EventArgs e)
         {
-            if (textPass.Text == "Pancho32;")
+            if (textPass.Text == "Contraseña")
             {
                 textPass.Clear();
             }
@@ -68,7 +69,7 @@ namespace Vista
         {
             if (textPass.Text == "")
             {
-                textPass.Text = "Pancho32";
+                textPass.Text = "Contraseña";
             }
             textPass.ForeColor = Color.DimGray;
         }
@@ -100,5 +101,33 @@ namespace Vista
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
         #endregion
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (textUser.Text == "Usuario" && textPass.Text == "Contraseña")
+            {
+                lblError.Text = ("Rellene ambos campos");
+                lblError.Visible = true;
+            }
+            else if (textPass.Text == "Contraseña")
+            {
+                    lblError.Text = ("Introduzca una contraseña valida");
+                    lblError.Visible = true;
+            }
+            else
+            {
+                if (textUser.Text == "Usuario")
+                {
+                    lblError.Text = ("Introduzca un usuario valido");
+                }
+            }
+        }
+        
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            RegisterForm frm = new RegisterForm();
+            frm.Show();
+        }
     }
 }

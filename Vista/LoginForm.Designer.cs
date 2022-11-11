@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class Form1
+    partial class LoginForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.textUser = new System.Windows.Forms.TextBox();
@@ -41,6 +41,8 @@
             this.close = new System.Windows.Forms.PictureBox();
             this.minimize = new System.Windows.Forms.PictureBox();
             this.btnShowPass = new System.Windows.Forms.PictureBox();
+            this.lblError = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -81,7 +83,7 @@
             this.textUser.Name = "textUser";
             this.textUser.Size = new System.Drawing.Size(403, 28);
             this.textUser.TabIndex = 1;
-            this.textUser.Text = "Fulanito Gomez";
+            this.textUser.Text = "Usuario";
             this.textUser.Enter += new System.EventHandler(this.textUser_Enter);
             this.textUser.Leave += new System.EventHandler(this.textUser_Leave);
             // 
@@ -119,7 +121,7 @@
             this.textPass.Name = "textPass";
             this.textPass.Size = new System.Drawing.Size(403, 28);
             this.textPass.TabIndex = 2;
-            this.textPass.Text = "Pancho32;";
+            this.textPass.Text = "Contraseña";
             this.textPass.Enter += new System.EventHandler(this.textPass_Enter);
             this.textPass.Leave += new System.EventHandler(this.textPass_Leave);
             // 
@@ -132,19 +134,20 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Bebas Neue", 14.25F);
             this.btnLogin.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnLogin.Location = new System.Drawing.Point(318, 255);
+            this.btnLogin.Location = new System.Drawing.Point(318, 266);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(415, 41);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Acceder";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // linkPass
             // 
             this.linkPass.AutoSize = true;
             this.linkPass.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkPass.LinkColor = System.Drawing.Color.Gainsboro;
-            this.linkPass.Location = new System.Drawing.Point(450, 315);
+            this.linkPass.Location = new System.Drawing.Point(450, 332);
             this.linkPass.Name = "linkPass";
             this.linkPass.Size = new System.Drawing.Size(169, 16);
             this.linkPass.TabIndex = 0;
@@ -195,12 +198,40 @@
             this.btnShowPass.TabStop = false;
             this.btnShowPass.Click += new System.EventHandler(this.btnShowPass_Click);
             // 
-            // Form1
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Crimson;
+            this.lblError.Location = new System.Drawing.Point(320, 235);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(103, 20);
+            this.lblError.TabIndex = 18;
+            this.lblError.Text = "Error Message";
+            this.lblError.Visible = false;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.LinkColor = System.Drawing.Color.Gainsboro;
+            this.linkLabel1.Location = new System.Drawing.Point(459, 312);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(149, 16);
+            this.linkLabel1.TabIndex = 19;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "¿Aun no esta registrado?";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(800, 360);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnShowPass);
             this.Controls.Add(this.minimize);
             this.Controls.Add(this.close);
@@ -211,7 +242,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "LoginForm";
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inciar Sesion";
@@ -243,6 +274,8 @@
         private System.Windows.Forms.PictureBox minimize;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox btnShowPass;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

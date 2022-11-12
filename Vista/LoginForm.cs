@@ -8,15 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using Logica;
+using System.Data.SqlClient;
 
 namespace Vista
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
+            textPass.UseSystemPasswordChar = true;
         }
         #region ControlInterfaz
 
@@ -38,23 +39,54 @@ namespace Vista
 
         private void textUser_Enter(object sender, EventArgs e)
         {
+            if(textUser.Text == "Usuario")
+            {
+                textUser.Clear();
+            }
+            textUser.ForeColor = Color.FromArgb (99,99,150);
         }
 
         private void textUser_Leave(object sender, EventArgs e)
         {
+            if (textUser.Text == "")
+            {
+                textUser.Text = "Usuario";
+            }
+            textUser.ForeColor = Color.DimGray;
         }
 
         
         private void textPass_Enter(object sender, EventArgs e)
         {
+            if (textPass.Text == "Contraseña")
+            {
+                textPass.Clear();
+            }
+            textPass.ForeColor = Color.FromArgb(99, 99, 150);
         }
 
         private void textPass_Leave(object sender, EventArgs e)
         {
+            if (textPass.Text == "")
+            {
+                textPass.Text = "Contraseña";
+            }
+            textPass.ForeColor = Color.DimGray;
         }
 
         private void btnShowPass_Click(object sender, EventArgs e)
         {
+            if (textPass.UseSystemPasswordChar == true)
+            {
+                textPass.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                if (textPass.UseSystemPasswordChar == false)
+                {
+                    textPass.UseSystemPasswordChar = true;
+                }
+            }
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -72,16 +104,30 @@ namespace Vista
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            SelectorComandos Cmd = new SelectorComandos();
-            Cmd.Consulta(textBox1.Text, textBox2.Text, textBox3.Text);
-
-            foreach (DataRow Fila in Cmd.Resultado.Rows)
+            if (textUser.Text == "Usuario" && textPass.Text == "Contraseña")
             {
-                foreach (var item in Fila.ItemArray)
+                lblError.Text = ("Rellene ambos campos");
+                lblError.Visible = true;
+            }
+            else if (textPass.Text == "Contraseña")
+            {
+                    lblError.Text = ("Introduzca una contraseña valida");
+                    lblError.Visible = true;
+            }
+            else
+            {
+                if (textUser.Text == "Usuario")
                 {
-                    MessageBox.Show(Convert.ToString(item));
+                    lblError.Text = ("Introduzca un usuario valido");
                 }
             }
+        }
+        
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            RegisterForm frm = new RegisterForm();
+            frm.Show();
         }
     }
 }

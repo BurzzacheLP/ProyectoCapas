@@ -22,10 +22,7 @@ namespace Datos
                 DA.Fill(_tabla);
                 Desconectar(Conexion);
             }
-            catch
-            {
-                throw;
-            }
+            catch{}
         }
 
         public DataTable Tabla

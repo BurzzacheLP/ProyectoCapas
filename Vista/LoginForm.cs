@@ -2,8 +2,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+<<<<<<< HEAD
 using System.Data;
 using Logica;
+=======
+using System.Data.SqlClient;
+>>>>>>> c619bff81e74ed8d367fba5402d395e56cfb5a5d
 
 namespace Vista
 {
@@ -105,7 +109,11 @@ namespace Vista
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (textUser.Text != "Usuario" && textPass.Text != "Contraseña" && string.IsNullOrWhiteSpace(textUser.Text) == false && string.IsNullOrWhiteSpace(textPass.Text) == false)
+=======
+            if (textUser.Text == "Usuario" && textPass.Text == "Contraseña")
+>>>>>>> c619bff81e74ed8d367fba5402d395e56cfb5a5d
             {
                 try
                 {

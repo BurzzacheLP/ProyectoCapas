@@ -63,6 +63,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <Compile Include="Class1.cs" />
+>>>>>>> c619bff81e74ed8d367fba5402d395e56cfb5a5d
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectorComandos.cs" />
   </ItemGroup>
